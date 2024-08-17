@@ -7,14 +7,14 @@ data class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
+    val id: Long? = null,
 
     @Column(unique = true)
-    private val username: String,
+    val username: String,
 
     @Column
-    private val password: String,
+    val password: String,
 
     @Column(unique = true)
-    private val email: String
+    val email: String
 )

@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
 	kotlin("plugin.jpa") version "1.9.24"
+	id ("com.avast.gradle.docker-compose") version "0.14.2"
 }
 
 group = "com.jozsefkind.pet"
@@ -44,4 +45,8 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+dockerCompose {
+	useComposeFiles.add("src/test/resources/docker-compose.yaml")
+	isRequiredBy(tasks.test)
 }
