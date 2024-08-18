@@ -10,12 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class TaskRepositoryComponentTest: BaseComponentTest() {
 
-    @Autowired
-    lateinit var underTest: TaskRepository
-
-    @Autowired
-    lateinit var userRepository: UserRepository
-
     @Test
     fun `taskrepository should save a task`() {
         // given
@@ -25,7 +19,7 @@ class TaskRepositoryComponentTest: BaseComponentTest() {
         val task = Task(description = "a random task", title = "with a title", status = TaskStatus.CREATED, user = savedUser)
 
         // when
-        val savedTask = underTest.save(task)
+        val savedTask = taskRepository.save(task)
 
         // then
         assertThat(savedTask.id).isNotNull

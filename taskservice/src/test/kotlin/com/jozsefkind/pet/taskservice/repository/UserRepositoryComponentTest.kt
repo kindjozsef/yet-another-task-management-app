@@ -8,18 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class UserRepositoryComponentTest: BaseComponentTest() {
 
-    @Autowired
-    lateinit var underTest: UserRepository
-
-
     @Test
     fun `test the spring data repository`() {
         // given a user
         val user = User(username="aUsername", email="anEmail", password = "aPassword")
 
         // when
-        val savedUser = underTest.save(user)
-        val ret = underTest.findAll()
+        val savedUser = userRepository.save(user)
+        val ret = userRepository.findAll()
 
         // then
         Assertions.assertThat(ret).hasSize(1)

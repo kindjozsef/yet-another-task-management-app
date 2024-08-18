@@ -13,7 +13,7 @@ data class User(
     val username: String,
 
     @Column
-    val password: String,
+    var password: String,
 
     @Column(unique = true)
     val email: String
