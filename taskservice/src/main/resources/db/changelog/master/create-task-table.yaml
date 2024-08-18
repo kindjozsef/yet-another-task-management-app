@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jkind
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: task
+      changes:
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    referencedTableName: user
+                    referencedColumnNames: id
+                    foreignKeyName: FK_TASK_USER_ID
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
